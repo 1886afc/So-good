@@ -20,6 +20,7 @@ class CreateRecipesTable extends Migration
             $table->string('ingredients');
             $table->string('instructions');
             $table->integer('servings');
+            $table->integer('user_id')->unsigned()->index();
             $table->timestamps();
         });
     }

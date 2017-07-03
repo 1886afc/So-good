@@ -15,6 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('/recipes','RecipeController' );
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/*route for the about page */
+Route::get('/about', function () {
+    return view('soGood.about ');
+});

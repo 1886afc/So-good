@@ -14,7 +14,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        //
+        return view('soGood.index', ['recipes' => recipe::all()]);
     }
 
     /**

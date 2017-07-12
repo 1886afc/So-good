@@ -10,18 +10,24 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'RecipeController@index');
+
+Route::get('/about', 'RecipeController@about');
+
+Route::get('/create', 'RecipeController@create');
+
+Route::get('/contact', 'RecipeController@contact');
 
 Route::resource('/recipes','RecipeController' );
+
+Route::resource('/recipe','HomeController' );
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-/*route for the about page */
-Route::get('/about', function () {
-    return view('soGood.about ');
-});

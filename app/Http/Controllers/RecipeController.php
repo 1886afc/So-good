@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RecipeController extends Controller
 {
@@ -17,6 +18,16 @@ class RecipeController extends Controller
         return view('soGood.index', ['recipes' => recipe::all()]);
     }
 
+
+    public function about(){
+        return view('soGood.about');
+    }
+
+    public function contact(){
+        return view('soGood.contact');
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +35,7 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        //
+        return view('soGood.create');
     }
 
     /**
@@ -35,7 +46,16 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $new = new recipe();
+        $new->type = $request->get('type');
+        $new->title = $request->get('title');
+        $new->ingredients = $request->get('ingredients');
+        $new->instructions = $request->get('instructions');
+        $new->servings = $request->get('servings');
+        $new->user_id = Auth::user()->id;
+        $new->save();
+
+        return redirect( route( 'recipes.index' ) );
     }
 
     /**

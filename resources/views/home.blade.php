@@ -8,28 +8,26 @@
                 <div class="panel-heading, center" ><h3>Welcome Back!  {{Auth::user()->name}}</h3></div>
 
                 <div class="panel-body">
+                    <h1>Your Recipes</h1>
 
-                    <h1>Hello world!</h1>
-                    {{--@foreach($recipe as $rec)--}}
-                        {{--@if ($rec->user_id = Auth::user()->id)--}}
-                        {{--<div class=container>--}}
-                            {{--<ul>--}}
-                                {{--<li>--}}
-                                    {{--Title: {{$rec['title']}}--}}
-                                {{--</li>--}}
-                                {{--<li>ingredients: {{$rec['ingrediants']}}</li>--}}
-                                {{--<li>instructions: {{$rec['instructions']}}</li>--}}
-                                {{--<li>servings: {{$rec['servings']}}</li>--}}
+                    @foreach($recipe as $recipes)
+                        @if(($recipes->user_id)===Auth::user()->id)
+                        <div class="well">
+                            <h3> <a href="{{route('recipes.show',['id'=>$recipes->id])}}">{{$recipes->title}}</a> </h3>
+                            <h4>{{$recipes->servings}}</h4>
+                            <h4>{{$recipes->ingredients}}</h4>
+                            <p>{{$recipes->instructions}}</p>
+                            <p>{{$recipes->user_id}}</p>
+                        </div>
+                        @else
+                            <p>You have no recipes!</p>
+                        @endif
+                    @endforeach
 
 
 
 
-                            {{--</ul>--}}
-                        {{--</div>--}}
-                        {{--@endif--}}
-                    {{--@endforeach--}}
                     <a href="{{route('recipes.create')}}">Add new recipe</a>
-                </div>
             </div>
         </div>
     </div>

@@ -13,21 +13,30 @@
                     @foreach($recipe as $recipes)
                         @if(($recipes->user_id)===Auth::user()->id)
                         <div class="well">
-                            <h3> <a href="{{route('recipes.show',['id'=>$recipes->id])}}">{{$recipes->title}}</a> </h3>
-                            <h4>{{$recipes->servings}}</h4>
-                            <h4>{{$recipes->ingredients}}</h4>
-                            <p>{{$recipes->instructions}}</p>
-                            <p>{{$recipes->user_id}}</p>
+                            <h3> <a href="{{route('recipes.show',['id'=>$recipes->id])}}"> <b>{{$recipes->title}}</b></a> </h3>
+                            <h4> <b>Servings:</b> {{$recipes->servings}}</h4>
+                            <h4> <b>ingredients:</b> {{$recipes->ingredients}}</h4>
+                            <p> <b>Instructions:</b> {{$recipes->instructions}}</p>
+                            <form method="post"
+                                  action="{{route('recipes.destroy', ['id' => $recipes->id])}}">
+                                {{ method_field('DELETE') }}
+                                {{csrf_field()}}
+                                <input type="submit" value="delete" class="btn btn-danger"/>
+                            </form>
+
                         </div>
                         @else
-                            <p>You have no recipes!</p>
+
                         @endif
+
+
                     @endforeach
 
 
 
 
                     <a href="{{route('recipes.create')}}">Add new recipe</a>
+                </div>
             </div>
         </div>
     </div>

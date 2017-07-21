@@ -15,7 +15,20 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        return view('soGood.index', ['recipes' => recipe::all()]);
+//        $recipe = Recipe::all();
+//        return view('SoGood.index')->with('recipes', $recipe);
+        return view( 'soGood.index', [ 'recipe' => recipe::all() ] );
+
+
+    }
+
+    public function home()
+    {
+//        $recipe = Recipe::all();
+//        return view('SoGood.index')->with('recipes', $recipe);
+        return view( 'home', [ 'recipe' => recipe::all() ] );
+
+
     }
 
 
@@ -55,7 +68,8 @@ class RecipeController extends Controller
         $new->user_id = Auth::user()->id;
         $new->save();
 
-        return redirect( route( 'recipes.index' ) );
+//        return redirect( route( 'home' ) );
+        return redirect('home');
     }
 
     /**
@@ -64,9 +78,11 @@ class RecipeController extends Controller
      * @param  \App\recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function show(recipe $recipe)
+    public function show($id)
     {
-        //
+        $recipes = recipe::find( $id );
+
+        return view( 'soGood.show', [ 'recipe' => $recipes ] );
     }
 
     /**
@@ -75,9 +91,13 @@ class RecipeController extends Controller
      * @param  \App\recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function edit(recipe $recipe)
+    public function edit($id)
     {
-        //
+        $recipes = recipe::find( $id );
+        $saved         = \request()->get( 'saved', false );
+
+        return view( 'soGood.edit', [ 'recipe' => $recipes, 'saved' => $saved ] );
+
     }
 
     /**
@@ -87,9 +107,17 @@ class RecipeController extends Controller
      * @param  \App\recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, recipe $recipe)
+    public function update(Request $request, $id)
     {
-        //
+        $thisRecipe       = recipe::find( $id );
+        $thisRecipe->title = $request->get( 'title' );
+        $thisRecipe->ingredients = $request->get( 'ingredients' );
+        $thisRecipe->servings = $request->get( 'servings' );
+        $thisRecipe->instructions = $request->get( 'instructions' );
+        $thisRecipe->save();
+
+        return redirect( route( 'recipes.edit',
+            [ 'id' => $id, 'saved' => true ] ) );
     }
 
     /**
@@ -98,8 +126,11 @@ class RecipeController extends Controller
      * @param  \App\recipe  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function destroy(recipe $recipe)
+    public function destroy($id)
     {
-        //
+        $recipes = recipe::find( $id );
+        $recipes->delete();
+
+        return redirect('home');
     }
 }

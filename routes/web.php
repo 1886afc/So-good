@@ -23,11 +23,13 @@ Route::get('/create', 'RecipeController@create');
 
 Route::get('/contact', 'RecipeController@contact');
 
+Route::get('/home', 'RecipeController@home');
+
 Route::resource('/recipes','RecipeController' );
 
-Route::resource('/recipe','HomeController' );
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 

@@ -1,19 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <h1>add a recipe</h1>
-
-        <form method="post" action="{{route('recipes.store')}}">
-            Type of food: <input type="text" name="type"/>
-            Title: <input type="text" name="title"/>
-            Ingredients: <input type="text" name="ingredients"/>
-            Instructions: <input type="text" name="instructions"/>
-            Total servings: <input type="text" name="servings"/>
-            <input type="submit" value="SEND!!!!! "/>
-            {{csrf_field()}}
-        </form>
-    </div>
 
 
 
@@ -24,7 +11,7 @@
                     <div class="panel-heading, center" ><h3>Create a new recipe {{Auth::user()->name}}!</h3></div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal"  method="post" action="{{route('recipes.store')}}">
+                        <form class="form-horizontal"  method="post" action="{{route('recipes.store')}}" enctype="multipart/data">
                             <fieldset>
 
                                 <div class="form-group">
@@ -65,6 +52,10 @@
                                         <textarea class="form-control" rows="3" name="instructions" id="textArea"></textarea>
                                         {{csrf_field()}}
                                     </div>
+                                </div>
+
+                                <div class="form-group">
+                                    {{form::file('cover_image')}}
                                 </div>
 
                                 <div class="form-group">

@@ -5,30 +5,103 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--Bootstrap-->
+    <!--Bootstrap-------------------------------------------------------------------------------------->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <!-- Optional theme -->
+    <!-- Optional theme ------------------------------------------------------------------------------>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-    <!-- Latest compiled and minified JavaScript -->
+    <!-- Latest compiled and minified JavaScript ------------------------------------------------------>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <!-- CSRF Token -->
+    <!-- CSRF Token ----------------------------------------------------------------------->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'SoGood') }}</title>
 
-    <!-- Styles -->
+    <!-- Styles ------------------------------------------------------------------------------->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
+    {{--font awesome--}}
+    <script src="https://use.fontawesome.com/4c5677d783.js"></script>
+
+    {{--css styling---------------------------------------------------------------------------}}
+
+    <style>
+         body {
+            background-color: grey;
+            color: #636b6f;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 100;
+            margin: 0;
+        }
+
+        /*.nav {*/
+            /*background-color: #E77607;*/
+
+        /*}*/
+
+        .jumbotron {
+            background-color: #ff9933;
+
+        }
+
+        .p1 {
+            color: grey;
+            /*font-family: 'Lobster', cursive;*/
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .logo {
+            color: grey;
+            font-family: 'Lobster', cursive;
+            font-size: 100px;
+            text-align: center;
+
+        }
+
+
+
+
+        .links > a {
+            color: B25800;
+            padding: 0 25px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+         #social {
+             padding-top: 15px;
+             padding-bottom: 15px;
+             background-color:;
+             /*float: left;*/
+         }
+
+         #social i {
+             font-size: 50px;
+             color: #4a4a4a
+         }
+
+         #social i:hover {
+             color:#ff9933;
+         }
+
+
+
+
+    </style>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
+        <nav class="navbar navbar-inverse navbar-fixed-top ">
+            <div class="container nav">
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
@@ -87,18 +160,72 @@
                 </div>
             </div>
         </nav>
-        <!--jumbotron-->
+        <!--jumbotron--------------------------------------------------------------------------------->
         <div class="jumbotron">
-            <h1>Jumbotron</h1>
-            <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-            <p><a class="btn btn-primary btn-lg">Learn more</a></p>
+            <h1 class="logo">So Good!</h1>
+            <p class="p1">Your place to find recipes as unique as you! </p>
+            <div class="container">
+                <div class="row">
+
+                    <div id="custom-search-input">
+                        <div class="input-group col-md-12">
+                            <input type="text" class="  search-query form-control" placeholder="Search something delicious!" />
+                            <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="button">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
         @yield('content')
     </div>
 
+
+
+
+    <nav class="navbar navbar-inverse navbar-static-bottom">
+        <div id="social">
+            <div class="container">
+                <div class="row centered">
+
+                    <div class="col-lg-3">
+
+                    </div>
+
+                    <div class="col-lg-3">
+                        <a href="https://www.facebook.com/poncej10"><i class="fa fa-facebook"></i></a>
+                    </div>
+
+
+
+                    <div class="col-lg-3">
+                        <a href="https://twitter.com/AFC__1886"><i class="fa fa-twitter"></i></a>
+                    </div>
+
+                    <div class="col-lg-3">
+
+                    </div>
+
+
+                </div><! --/row -->
+            </div><! --/container -->
+        </div><! --/social -->
+
+
+    </nav>
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+
+
 </body>
 </html>

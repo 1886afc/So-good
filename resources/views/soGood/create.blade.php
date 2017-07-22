@@ -11,7 +11,7 @@
                     <div class="panel-heading, center" ><h3>Create a new recipe {{Auth::user()->name}}!</h3></div>
 
                     <div class="panel-body">
-                        <form class="form-horizontal"  method="post" action="{{route('recipes.store')}}" enctype="multipart/data">
+                        <form class="form-horizontal"  method="post" action="{{route('recipes.store')}}" enctype="multipart/form-data">
                             <fieldset>
 
                                 <div class="form-group">
@@ -55,7 +55,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    {{form::file('cover_image')}}
+                                    <input type="file" name="image" accept="image/*">
                                 </div>
 
                                 <div class="form-group">

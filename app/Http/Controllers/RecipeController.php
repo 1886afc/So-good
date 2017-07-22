@@ -59,6 +59,30 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+           'image' => 'image|nullable|max:1999'
+        ]);
+
+//        handle file upload
+        if($request->hasFile('image')){
+            //get file name with extension
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            //get just file name
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //GET extension
+            $extension = $request->file('image')->getClientOriginalExtension();
+            //file name to store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            //upload image
+            $path = $request->file('image')->storeAs('public/recipe_images', $fileNameToStore);
+
+
+        }else {
+            $fileNameToStore = 'noimage.jpg';
+        }
+
+
+
         $new = new recipe();
         $new->type = $request->get('type');
         $new->title = $request->get('title');
@@ -66,6 +90,7 @@ class RecipeController extends Controller
         $new->instructions = $request->get('instructions');
         $new->servings = $request->get('servings');
         $new->user_id = Auth::user()->id;
+        $new->image = $fileNameToStore;
         $new->save();
 
 //        return redirect( route( 'home' ) );
@@ -109,6 +134,11 @@ class RecipeController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+
+
+
+
         $thisRecipe       = recipe::find( $id );
         $thisRecipe->title = $request->get( 'title' );
         $thisRecipe->ingredients = $request->get( 'ingredients' );

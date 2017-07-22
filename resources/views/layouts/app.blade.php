@@ -186,35 +186,35 @@
     </div>
 
 
+    <div id="social">
+        <div class="container">
+            <div class="row centered">
 
+                <div class="col-lg-3">
 
-    <nav class="navbar navbar-inverse navbar-static-bottom">
-        <div id="social">
-            <div class="container">
-                <div class="row centered">
+                </div>
 
-                    <div class="col-lg-3">
-
-                    </div>
-
-                    <div class="col-lg-3">
-                        <a href="https://www.facebook.com/poncej10"><i class="fa fa-facebook"></i></a>
-                    </div>
+                <div class="col-lg-3">
+                    <a href="https://www.facebook.com/poncej10"><i class="fa fa-facebook"></i></a>
+                </div>
 
 
 
-                    <div class="col-lg-3">
-                        <a href="https://twitter.com/AFC__1886"><i class="fa fa-twitter"></i></a>
-                    </div>
-
-                    <div class="col-lg-3">
-
-                    </div>
+                <div class="col-lg-3">
+                    <a href="https://twitter.com/AFC__1886"><i class="fa fa-twitter"></i></a>
+                </div>
 
 
-                </div><! --/row -->
-            </div><! --/container -->
-        </div><! --/social -->
+
+
+            </div><! --/row -->
+        </div><! --/container -->
+    </div><! --/social -->
+
+    <br> <br>
+
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+
 
 
     </nav>

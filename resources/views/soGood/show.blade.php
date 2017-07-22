@@ -12,10 +12,12 @@
                     <div class="panel-body">
                         <div class="well">
                             <h3> {{$recipe->title}}</h3>
+                            <img style="width: 100%" src="/storage/recipe_images/{{$recipe->image}}">
+                            <br> <br>
                             <h4>Ingredients: {{$recipe->ingredients}}</h4>
                             <h4>Servings: {{$recipe->servings}}</h4>
                             <p>Instructions: {{$recipe->instructions}}</p>
-                            <a class="btn btn-primary" href="{{route('recipes.edit', ['id' => $recipe->id])}}">Edit</a>
+                            <a class="btn btn-primary" href="{{route('recipes.edit',  ['id' => $recipe->id])}}">Edit</a>
                             <form method="post"
                                   action="{{route('recipes.destroy', ['id' => $recipe->id])}}">
                                 {{ method_field('DELETE') }}

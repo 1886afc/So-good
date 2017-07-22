@@ -22,16 +22,26 @@
                     @foreach($recipe as $recipes)
                         @if(($recipes->user_id)===Auth::user()->id)
                         <div class="well recipe">
-                            <h3> <a href="{{route('recipes.show',['id'=>$recipes->id])}}"> <b>{{$recipes->title}}</b></a> </h3>
-                            <h4> <b>Servings:</b> {{$recipes->servings}}</h4>
-                            <h4> <b>ingredients:</b> {{$recipes->ingredients}}</h4>
-                            <p> <b>Instructions:</b> {{$recipes->instructions}}</p>
-                            {{--<form method="post"--}}
-                                  {{--action="{{route('recipes.destroy', ['id' => $recipes->id])}}">--}}
-                                {{--{{ method_field('DELETE') }}--}}
-                                {{--{{csrf_field()}}--}}
-                                {{--<input type="submit" value="delete" class="btn btn-danger"/>--}}
-                            {{--</form>--}}
+
+                            <div class="row">
+                               <div class="col-md-4 col-sm-4 ">
+                                    <img style="width: 100%" src="/storage/recipe_images/{{$recipes->image}}">
+                               </div>
+
+                                <div class="col-md-8 col-sm-8 ">
+                                    <h3> <a href="{{route('recipes.show',['id'=>$recipes->id])}}"> <b>{{$recipes->title}}</b></a> </h3>
+                                    <h4> <b>Servings:</b> {{$recipes->servings}}</h4>
+                                    <h4> <b>ingredients:</b> {{$recipes->ingredients}}</h4>
+                                    <p> <b>Instructions:</b> {{$recipes->instructions}}</p>
+                                    {{--<form method="post"--}}
+                                    {{--action="{{route('recipes.destroy', ['id' => $recipes->id])}}">--}}
+                                    {{--{{ method_field('DELETE') }}--}}
+                                    {{--{{csrf_field()}}--}}
+                                    {{--<input type="submit" value="delete" class="btn btn-danger"/>--}}
+                                    {{--</form>--}}
+                                </div>
+                            </div>
+
 
                         </div>
                         @else

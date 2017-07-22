@@ -12,7 +12,7 @@
                                 <div class="alert alert-success">Saved!</div>
                             @endif
                             <form method="post"
-                                  action="{{route('recipes.update', ['id' => $recipe->id])}}">
+                                  action="{{route('recipes.update', ['id' => $recipe->id])}}" enctype="multipart/form-data">
 
                                 <h4>Title:</h4>
                                 <input type="text" name="title" value=" {{$recipe->title}}"/>
@@ -25,6 +25,10 @@
 
                                 <h4>Instructions:</h4>
                                 <input type="text" name="instructions" value="{{$recipe->instructions}}"/>
+
+                                <div class="form-group">
+                                    <input type="file" name="image" accept="image/*">
+                                </div>
 
                                 {{ method_field('PUT') }}
                                 {{csrf_field()}}

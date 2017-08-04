@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class RecipeController extends Controller
 {
@@ -15,8 +16,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-//        $recipe = Recipe::all();
-//        return view('SoGood.index')->with('recipes', $recipe);
+
         return view( 'soGood.index', [ 'recipe' => recipe::all() ] );
 
 
@@ -24,8 +24,7 @@ class RecipeController extends Controller
 
     public function home()
     {
-//        $recipe = Recipe::all();
-//        return view('SoGood.index')->with('recipes', $recipe);
+
         return view( 'home', [ 'recipe' => recipe::all() ] );
 
 
@@ -135,6 +134,22 @@ class RecipeController extends Controller
     public function update(Request $request, $id)
     {
 
+        //        handle file upload
+        if($request->hasFile('image')){
+            //get file name with extension
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            //get just file name
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //GET extension
+            $extension = $request->file('image')->getClientOriginalExtension();
+            //file name to store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            //upload image
+            $path = $request->file('image')->storeAs('public/recipe_images', $fileNameToStore);
+
+
+        }
+
 
 
 
@@ -144,6 +159,9 @@ class RecipeController extends Controller
         $thisRecipe->ingredients = $request->get( 'ingredients' );
         $thisRecipe->servings = $request->get( 'servings' );
         $thisRecipe->instructions = $request->get( 'instructions' );
+        if($request->hasFile('image')){
+            $thisRecipe->image = $fileNameToStore;
+        }
         $thisRecipe->save();
 
         return redirect( route( 'recipes.edit',
@@ -159,6 +177,11 @@ class RecipeController extends Controller
     public function destroy($id)
     {
         $recipes = recipe::find( $id );
+        if ($recipes->image != 'noimage.jpg'){
+           //delete image
+            Storage::delete('public/recipe_images/'.$recipes->image);
+        }
+
         $recipes->delete();
 
         return redirect('home');

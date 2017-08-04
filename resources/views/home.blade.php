@@ -29,7 +29,7 @@
                                </div>
 
                                 <div class="col-md-8 col-sm-8 ">
-                                    <h3> <a href="{{route('recipes.show',['id'=>$recipes->id])}}"> <b>{{$recipes->title}}</b></a> </h3>
+                                    <h3> <a href="{{route('recipes.publicShow',['id'=>$recipes->id])}}"> <b>{{$recipes->title}}</b></a> </h3>
                                     <h4> <b>Servings:</b> {{$recipes->servings}}</h4>
                                     <h4> <b>ingredients:</b> {{$recipes->ingredients}}</h4>
                                     <p> <b>Instructions:</b> {{$recipes->instructions}}</p>
